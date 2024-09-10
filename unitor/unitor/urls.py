@@ -15,8 +15,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from rest_framework.routers import DefaultRouter
+from your_app import views  # Update 'your_app' with the correct app name
 
 router = DefaultRouter()
 router.register(r'korisnik', views.KorisnikViewSet)
@@ -25,6 +26,13 @@ router.register(r'pomocni_radnici', views.PomocniRadniciViewSet)
 router.register(r'lokacije', views.LokacijeViewSet)
 router.register(r'eksterni_oglasivaci', views.EksterniOglasivaciViewSet)
 router.register(r'steta', views.StetaViewSet)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    # Add the OAuth allauth routes
+    path('accounts/', include('allauth.urls')),  # Include allauth URLs for OAuth
+
+    # API routes
+    path('api/', include(router.urls)),
 ]
