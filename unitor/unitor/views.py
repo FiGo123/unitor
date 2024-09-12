@@ -14,9 +14,7 @@ class PomocniRadniciViewSet(viewsets.ModelViewSet):
     queryset = PomocniRadnici.objects.all()
     serializer_class = PomocniRadniciSerializer
 
-class LokacijeViewSet(viewsets.ModelViewSet):
-    queryset = Lokacije.objects.all()
-    serializer_class = LokacijeSerializer
+
 
 class EksterniOglasivaciViewSet(viewsets.ModelViewSet):
     queryset = EksterniOglasivaci.objects.all()

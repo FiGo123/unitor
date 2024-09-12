@@ -18,9 +18,6 @@ class PomocniRadnici(models.Model):
     # Add other fields as required
 
 
-class Lokacije(models.Model):
-    unique_id = models.AutoField(primary_key=True)
-    # Add other fields as required
 
 
 class EksterniOglasivaci(models.Model):

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Korisnik, UposljenaJedinica, PomocniRadnici, Lokacije, EksterniOglasivaci, Steta
+from .models import Korisnik, UposljenaJedinica, PomocniRadnici, EksterniOglasivaci, Steta
 
 class KorisnikSerializer(serializers.ModelSerializer):
     class Meta:
@@ -40,16 +40,6 @@ class PomocniRadniciSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Hours worked cannot be negative.")
         return data
 
-class LokacijeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Lokacije
-        fields = '__all__'
-
-    # Field-level validation for 'city'
-    def validate_city(self, value):
-        if not value.isalpha():
-            raise serializers.ValidationError("City name must contain only letters.")
-        return value
 
 class EksterniOglasivaciSerializer(serializers.ModelSerializer):
     class Meta:
@@ -68,7 +58,6 @@ class StetaSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     # Object-level validation
-    def validate(self, data):
     def validate(self, data):
         if data['amount'] < 0:
             raise serializers.ValidationError("Damage amount cannot be negative.")
