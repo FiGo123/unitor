@@ -10,11 +10,6 @@ class UposljenaJedinicaViewSet(viewsets.ModelViewSet):
     queryset = UposljenaJedinica.objects.all()
     serializer_class = UposljenaJedinicaSerializer
 
-class PomocniRadniciViewSet(viewsets.ModelViewSet):
-    queryset = PomocniRadnici.objects.all()
-    serializer_class = PomocniRadniciSerializer
-
-
 
 class EksterniOglasivaciViewSet(viewsets.ModelViewSet):
     queryset = EksterniOglasivaci.objects.all()

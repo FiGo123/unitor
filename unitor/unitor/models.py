@@ -12,13 +12,6 @@ class UposljenaJedinica(models.Model):
     # Add other fields as required
 
 
-class PomocniRadnici(models.Model):
-    unique_id = models.AutoField(primary_key=True)
-    uposljena_jedinica = models.ForeignKey(UposljenaJedinica, related_name='pomocni_radnici', on_delete=models.CASCADE)
-    # Add other fields as required
-
-
-
 
 class EksterniOglasivaci(models.Model):
     unique_id = models.AutoField(primary_key=True)
