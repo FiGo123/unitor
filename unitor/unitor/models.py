@@ -6,12 +6,6 @@ class Korisnik(models.Model):
     # Add other fields as required
 
 
-class UposljenaJedinica(models.Model):
-    unique_id = models.AutoField(primary_key=True)
-    korisnik = models.ForeignKey(Korisnik, related_name='uposljene_jedinice', on_delete=models.CASCADE)
-    # Add other fields as required
-
-
 
 class EksterniOglasivaci(models.Model):
     unique_id = models.AutoField(primary_key=True)

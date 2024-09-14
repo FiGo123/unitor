@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Korisnik, UposljenaJedinica, PomocniRadnici, EksterniOglasivaci, Steta
+from .models import Korisnik, EksterniOglasivaci, Steta
 
 class KorisnikSerializer(serializers.ModelSerializer):
     class Meta:
@@ -17,19 +17,6 @@ class KorisnikSerializer(serializers.ModelSerializer):
         if data['age'] < 18:
             raise serializers.ValidationError("Age must be at least 18.")
         return data
-
-class UposljenaJedinicaSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = UposljenaJedinica
-        fields = '__all__'
-
-    # Field-level validation example for 'unit_name'
-    def validate_unit_name(self, value):
-        if len(value) < 3:
-            raise serializers.ValidationError("Unit name must be at least 3 characters long.")
-        return value
-
-
 
 
 class EksterniOglasivaciSerializer(serializers.ModelSerializer):
