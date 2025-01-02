@@ -1,5 +1,8 @@
 from django.db import models
 
+from unitor.lokacije.models import Lokacije
+from unitor.uposljena_jedinica.models import UposljenaJedinica
+
 
 class Korisnik(models.Model):
     unique_id = models.AutoField(primary_key=True)

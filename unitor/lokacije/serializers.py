@@ -1,5 +1,7 @@
 from rest_framework import serializers
 
+from unitor.lokacije.models import Lokacije
+
 
 class LokacijeSerializer(serializers.ModelSerializer):
     class Meta:
