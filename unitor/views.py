@@ -1,6 +1,8 @@
 from rest_framework import viewsets
-from .models import Korisnik, UposljenaJedinica, PomocniRadnici, Lokacije, EksterniOglasivaci, Steta
-from .serializers import KorisnikSerializer, UposljenaJedinicaSerializer, PomocniRadniciSerializer, LokacijeSerializer, EksterniOglasivaciSerializer, StetaSerializer
+
+from .models import Korisnik, Steta
+from .serializers import KorisnikSerializer, StetaSerializer
+
 
 class KorisnikViewSet(viewsets.ModelViewSet):
     queryset = Korisnik.objects.all()

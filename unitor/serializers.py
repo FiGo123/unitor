@@ -1,5 +1,7 @@
 from rest_framework import serializers
-from .models import Korisnik, EksterniOglasivaci, Steta
+
+from unitor.models import Korisnik, Steta
+
 
 class KorisnikSerializer(serializers.ModelSerializer):
     class Meta:
