@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from unitor.lokacije.models import Lokacije
+from lokacije.models import Lokacije
 
 
 class LokacijeSerializer(serializers.ModelSerializer):

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from unitor.uposljena_jedinica.models import UposljenaJedinica
+from uposljena_jedinica.models import UposljenaJedinica
 
 
 class UposljenaJedinicaSerializer(serializers.ModelSerializer):

@@ -1,6 +1,6 @@
 from django.db import models
 
-from unitor.unitor.models import UposljenaJedinica
+from uposljena_jedinica.models import UposljenaJedinica
 
 
 class PomocniRadnici(models.Model):

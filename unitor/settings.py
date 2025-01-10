@@ -27,6 +27,8 @@ INSTALLED_APPS = [
     'allauth',
     'lokacije',
     'uposljena_jedinica',
+    'pomocni_radnici',
+    'eksterni_oglasivaci',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',  # OAuth provider (e.g., Google)

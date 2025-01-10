@@ -1,6 +1,6 @@
 from django.db import models
 
-from unitor.unitor.models import Korisnik
+from unitor.models import Korisnik
 
 
 class EksterniOglasivaci(models.Model):

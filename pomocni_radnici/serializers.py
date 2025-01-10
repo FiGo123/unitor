@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from unitor.pomocni_radnici.models import PomocniRadnici
+from pomocni_radnici.models import PomocniRadnici
 
 
 class PomocniRadniciSerializer(serializers.ModelSerializer):

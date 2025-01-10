@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from unitor.eksterni_oglasivaci.models import EksterniOglasivaci
+from eksterni_oglasivaci.models import EksterniOglasivaci
 
 
 class EksterniOglasivaciSerializer(serializers.ModelSerializer):
