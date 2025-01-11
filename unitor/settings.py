@@ -68,10 +68,16 @@ WSGI_APPLICATION = 'unitor.wsgi.application'
 # Database
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'unitor',
+        'USER': 'test',
+        'PASSWORD': 'test',
+        'HOST': 'localhost',  # or the IP of the PostgreSQL server
+        'PORT': '5432',       # Default PostgreSQL port
     }
 }
+
+
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
@@ -126,11 +132,12 @@ SOCIALACCOUNT_PROVIDERS = {
 # Django REST Framework and Simple JWT configuration
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication',  # JWT-based authentication
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',  # Only authenticated users
-    ]
+        'rest_framework.permissions.IsAuthenticated',
+    ],
 }
 
 # Simple JWT Settings

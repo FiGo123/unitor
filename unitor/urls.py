@@ -8,21 +8,22 @@ from uposljena_jedinica.views import UposljenaJedinicaViewSet
 from pomocni_radnici.views import PomocniRadniciViewSet
 from lokacije.views import LokacijeViewSet
 from eksterni_oglasivaci.views import EksterniOglasivaciAPIView
+from .views import  KorisnikViewSet, StetaViewSet
 
 # Define the DefaultRouter
 router = DefaultRouter()
-router.register(r'korisnik', views.KorisnikViewSet)
-router.register(r'uposljena_jedinica', UposljenaJedinicaViewSet)
-router.register(r'pomocni_radnici', PomocniRadniciViewSet)
-router.register(r'lokacije', LokacijeViewSet)
-router.register(r'steta', views.StetaViewSet)
+router.register(r'korisnik', KorisnikViewSet, basename='korisnik')
+router.register(r'uposljena_jedinica', UposljenaJedinicaViewSet, basename='uposljena_jedinica')
+router.register(r'pomocni_radnici', PomocniRadniciViewSet, basename='pomocni_radnici')
+router.register(r'lokacije', LokacijeViewSet, basename='lokacije')
+router.register(r'steta', StetaViewSet, basename='steta')
 
 # Define urlpatterns
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),  # OAuth URLs for allauth
     path('api/', include(router.urls)),  # Include all registered viewsets
-
+    path('api-auth/', include('rest_framework.urls')),
     # JWT token endpoints
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
