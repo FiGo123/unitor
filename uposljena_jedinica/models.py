@@ -6,7 +6,7 @@ class UposljenaJedinica(models.Model):
     korisnik = models.ForeignKey('unitor.Korisnik', related_name='uposljene_jedinice', on_delete=models.CASCADE)
     tip = models.ForeignKey(
         'Tip',
-        related_name='uposljene_jedinice',
+        related_name='uposljena_jedinice',
         on_delete=models.SET_NULL,
         null=True,  # Allow null if no type is assigned
         blank=True

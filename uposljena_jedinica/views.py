@@ -5,6 +5,11 @@ from uposljena_jedinica.serializers import UposljenaJedinicaSerializer
 
 
 class UposljenaJedinicaViewSet(viewsets.ModelViewSet):
-    queryset = UposljenaJedinica.objects.all()
+    print("projaa")
+    try:
+        queryset = UposljenaJedinica.objects.all()
+    except Exception as e:
+        print("paradox")
+        print(e)
     serializer_class = UposljenaJedinicaSerializer
 
