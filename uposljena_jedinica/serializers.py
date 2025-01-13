@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from uposljena_jedinica.models import UposljenaJedinica
+from uposljena_jedinica.models import UposljenaJedinica, Steta
 
 
 class UposljenaJedinicaSerializer(serializers.ModelSerializer):
@@ -13,3 +13,14 @@ class UposljenaJedinicaSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Unit name must be at least 3 characters long.")
         return value
 
+
+class StetaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Steta
+        fields = '__all__'
+
+    # Object-level validation
+    def validate(self, data):
+        if data['amount'] < 0:
+            raise serializers.ValidationError("Damage amount cannot be negative.")
+        return data

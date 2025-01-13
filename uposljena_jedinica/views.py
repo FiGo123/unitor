@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 
-from uposljena_jedinica.models import UposljenaJedinica
-from uposljena_jedinica.serializers import UposljenaJedinicaSerializer
+from uposljena_jedinica.models import UposljenaJedinica, Steta
+from uposljena_jedinica.serializers import UposljenaJedinicaSerializer, StetaSerializer
 
 
 class UposljenaJedinicaViewSet(viewsets.ModelViewSet):
@@ -13,3 +13,7 @@ class UposljenaJedinicaViewSet(viewsets.ModelViewSet):
         print(e)
     serializer_class = UposljenaJedinicaSerializer
 
+
+class StetaViewSet(viewsets.ModelViewSet):
+    queryset = Steta.objects.all()
+    serializer_class = StetaSerializer
