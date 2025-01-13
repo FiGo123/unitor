@@ -4,17 +4,15 @@ from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 from unitor import views
-from uposljena_jedinica.views import UposljenaJedinicaViewSet
-from pomocni_radnici.views import PomocniRadniciViewSet
+from uposljena_jedinica.views import UposljenaJedinicaViewSet, StetaViewSet
 from lokacije.views import LokacijeViewSet
 from eksterni_oglasivaci.views import EksterniOglasivaciAPIView
-from .views import  KorisnikViewSet, StetaViewSet
+from .views import  KorisnikViewSet
 
 # Define the DefaultRouter
 router = DefaultRouter()
 router.register(r'korisnik', KorisnikViewSet, basename='korisnik')
 router.register(r'uposljena_jedinica', UposljenaJedinicaViewSet, basename='uposljena_jedinica')
-router.register(r'pomocni_radnici', PomocniRadniciViewSet, basename='pomocni_radnici')
 router.register(r'lokacije', LokacijeViewSet, basename='lokacije')
 router.register(r'steta', StetaViewSet, basename='steta')
 

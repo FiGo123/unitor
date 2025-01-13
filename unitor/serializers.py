@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from unitor.models import Korisnik, Steta
+from unitor.models import Korisnik
 
 
 class KorisnikSerializer(serializers.ModelSerializer):
@@ -22,13 +22,3 @@ class KorisnikSerializer(serializers.ModelSerializer):
 
 
 
-class StetaSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Steta
-        fields = '__all__'
-
-    # Object-level validation
-    def validate(self, data):
-        if data['amount'] < 0:
-            raise serializers.ValidationError("Damage amount cannot be negative.")
-        return data

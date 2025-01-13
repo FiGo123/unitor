@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 
-from .models import Korisnik, Steta
-from .serializers import KorisnikSerializer, StetaSerializer
+from .models import Korisnik
+from .serializers import KorisnikSerializer
 
 
 class KorisnikViewSet(viewsets.ModelViewSet):
@@ -9,6 +9,3 @@ class KorisnikViewSet(viewsets.ModelViewSet):
     serializer_class = KorisnikSerializer
 
 
-class StetaViewSet(viewsets.ModelViewSet):
-    queryset = Steta.objects.all()
-    serializer_class = StetaSerializer

@@ -27,7 +27,6 @@ INSTALLED_APPS = [
     'allauth',
     'lokacije',
     'uposljena_jedinica',
-    'pomocni_radnici',
     'eksterni_oglasivaci',
     'allauth.account',
     'allauth.socialaccount',
