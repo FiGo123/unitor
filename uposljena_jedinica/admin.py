@@ -11,5 +11,4 @@ admin.site.register(PomocniRadnici)
 
 #TODO Validacije da se ne mogu preklapati datumi
 #TODO Filteri za vrijeme, cijene
-#TODO Cijena prednajma jedinice(za koliko je izajmljena da se uposli, primjer iznajmljen stan koji se nanovo iznajmljuje)
 #TODO Da se dodaju slike za jedinice, stetu(nije bitan task)

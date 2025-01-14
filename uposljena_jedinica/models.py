@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 
 from lokacije.models import Lokacije
@@ -64,6 +65,7 @@ class PomocniRadnici(models.Model):
         return self.naziv
     # Add other fields as required
 
+
 class DetaljiIznajmljivanja(models.Model):
     jedinica = models.ForeignKey(
         'UposljenaJedinica',
@@ -81,3 +83,22 @@ class DetaljiIznajmljivanja(models.Model):
 
     def __str__(self):
         return f"Detalji Iznajmljivanja za {self.jedinica}"
+
+    def clean(self):
+        super().clean()
+        if self.iznajmljeno_od and self.iznajmljeno_do and self.iznajmljeno_od > self.iznajmljeno_do:
+            raise ValidationError("'iznajmljeno_od' cannot be after 'iznajmljeno_do'.")
+
+        # Check for overlapping rentals
+        overlapping_rentals = DetaljiIznajmljivanja.objects.filter(
+            jedinica=self.jedinica,
+            iznajmljeno_od__lte=self.iznajmljeno_do,
+            iznajmljeno_do__gte=self.iznajmljeno_od
+        ).exclude(pk=self.pk)  # Exclude the current instance during updates
+
+        if overlapping_rentals.exists():
+            raise ValidationError("There is already a rental for this unit in the specified date range.")
+
+    def save(self, *args, **kwargs):
+        self.full_clean()  # Call the clean method before saving
+        super().save(*args, **kwargs)
