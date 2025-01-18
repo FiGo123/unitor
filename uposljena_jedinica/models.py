@@ -84,20 +84,31 @@ class DetaljiIznajmljivanja(models.Model):
     def __str__(self):
         return f"Detalji Iznajmljivanja za {self.jedinica}"
 
-    def gitclean(self):
+    def clean(self):
         super().clean()
+
         if self.iznajmljeno_od and self.iznajmljeno_do and self.iznajmljeno_od > self.iznajmljeno_do:
-            raise ValidatiginError("'iznajmljeno_od' cannot be after 'iznajmljeno_do'.")
+            raise ValidationError("'iznajmljeno_od' cannot be after 'iznajmljeno_do'.")
 
         # Check for overlapping rentals
         overlapping_rentals = DetaljiIznajmljivanja.objects.filter(
             jedinica=self.jedinica,
-            iznajmljeno_od__lte=self.iznajmljeno_do,
-            iznajmljeno_do__gte=self.iznajmljeno_od
+            iznajmljeno_od__lt=self.iznajmljeno_do,
+            iznajmljeno_do__gt=self.iznajmljeno_od
         ).exclude(pk=self.pk)  # Exclude the current instance during updates
 
         if overlapping_rentals.exists():
             raise ValidationError("There is already a rental for this unit in the specified date range.")
+
+        # Check for exact duplicates
+        exact_duplicate = DetaljiIznajmljivanja.objects.filter(
+            jedinica=self.jedinica,
+            iznajmljeno_od=self.iznajmljeno_od,
+            iznajmljeno_do=self.iznajmljeno_do
+        ).exclude(pk=self.pk)  # Exclude the current instance during updates
+
+        if exact_duplicate.exists():
+            raise ValidationError("A rental with the exact same dates already exists for this unit.")
 
     def save(self, *args, **kwargs):
         self.full_clean()  # Call the clean method before saving
