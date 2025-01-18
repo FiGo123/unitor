@@ -84,10 +84,10 @@ class DetaljiIznajmljivanja(models.Model):
     def __str__(self):
         return f"Detalji Iznajmljivanja za {self.jedinica}"
 
-    def clean(self):
+    def gitclean(self):
         super().clean()
         if self.iznajmljeno_od and self.iznajmljeno_do and self.iznajmljeno_od > self.iznajmljeno_do:
-            raise ValidationError("'iznajmljeno_od' cannot be after 'iznajmljeno_do'.")
+            raise ValidatiginError("'iznajmljeno_od' cannot be after 'iznajmljeno_do'.")
 
         # Check for overlapping rentals
         overlapping_rentals = DetaljiIznajmljivanja.objects.filter(
