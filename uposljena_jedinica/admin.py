@@ -9,6 +9,5 @@ admin.site.register(DetaljiIznajmljivanja)
 admin.site.register(PomocniRadnici)
 
 
-#TODO Validacije da se ne mogu preklapati datumi
 #TODO Filteri za vrijeme, cijene
 #TODO Da se dodaju slike za jedinice, stetu(nije bitan task)

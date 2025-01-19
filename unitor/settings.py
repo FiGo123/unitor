@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt.token_blacklist',  # JWT token blacklist support
     'unitor',  # Your app
     'django.contrib.sites',  # Required by allauth
+    'django_filters',
     'allauth',
     'lokacije',
     'uposljena_jedinica',
