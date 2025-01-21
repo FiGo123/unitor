@@ -13,8 +13,8 @@ class EksterniOglasivaci(models.Model):
     unique_id = models.AutoField(primary_key=True)
     korisnik = models.ForeignKey(Korisnik, related_name='eksterni_oglasivaci', on_delete=models.CASCADE)
 
-    platform = models.ForeignKey(Platforma, related_name='eksterni_oglasivaci', on_delete=models.CASCADE)
-    api_key = models.CharField(max_length=255)
+    platform = models.ForeignKey(Platforma, related_name='eksterni_oglasivaci', on_delete=models.CASCADE, null=True, blank=True)
+    api_key = models.CharField(max_length=255, null=True, blank=True)
     last_sync = models.DateTimeField(null=True, blank=True)
 
     class Meta:
