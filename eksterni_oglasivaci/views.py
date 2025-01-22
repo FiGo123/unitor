@@ -20,13 +20,3 @@ class EksterniOglasivaciAPIView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def put(self, request, pk, *args, **kwargs):
-        """
-        Handle PUT request to update an existing EksterniOglasivaci instance.
-        """
-        instance = get_object_or_404(EksterniOglasivaci, pk=pk)
-        serializer = EksterniOglasivaciSerializer(instance, data=request.data, partial=True)  # Use partial=True for partial updates
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
