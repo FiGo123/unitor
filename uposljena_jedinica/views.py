@@ -1,5 +1,6 @@
 from rest_framework import viewsets
 
+from rest_framework.permissions import IsAuthenticated
 from uposljena_jedinica.models import UposljenaJedinica, Steta
 from uposljena_jedinica.serializers import UposljenaJedinicaSerializer, StetaSerializer
 from django_filters.rest_framework import DjangoFilterBackend, FilterSet, DateFilter
@@ -13,10 +14,16 @@ class UposljenaJedinicaFilter(FilterSet):
         fields = ['iznajmljeno_od', 'iznajmljeno_do']
 
 class UposljenaJedinicaViewSet(viewsets.ModelViewSet):
-    queryset = UposljenaJedinica.objects.all()
     serializer_class = UposljenaJedinicaSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_class = UposljenaJedinicaFilter
+    permission_classes = [IsAuthenticated]  # Ensures only authenticated users can access this view
+
+    def get_queryset(self):
+        """
+        Return only the UposljenaJedinica records related to the logged-in user.
+        """
+        return UposljenaJedinica.objects.filter(korisnik=self.request.user)
 
 
 class StetaViewSet(viewsets.ModelViewSet):
