@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 
 from rest_framework.permissions import IsAuthenticated
-from uposljena_jedinica.models import UposljenaJedinica, Steta
+from uposljena_jedinica.models import UposljenaJedinica, Steta, DetaljiIznajmljivanja
 from uposljena_jedinica.serializers import UposljenaJedinicaSerializer, StetaSerializer
 from django_filters.rest_framework import DjangoFilterBackend, FilterSet, DateFilter
 
@@ -27,5 +27,19 @@ class UposljenaJedinicaViewSet(viewsets.ModelViewSet):
 
 
 class StetaViewSet(viewsets.ModelViewSet):
-    queryset = Steta.objects.all()
     serializer_class = StetaSerializer
+    permission_classes = [IsAuthenticated]  # Ensure only authenticated users can access
+
+    def get_queryset(self):
+        # Get the currently authenticated user
+        user = self.request.user
+
+        # Get all uposljena_jedinica associated with the user
+        user_units = UposljenaJedinica.objects.filter(korisnik=user)
+
+        # Get the related detalji_iznajmljivanja instances
+        user_rentals = DetaljiIznajmljivanja.objects.filter(jedinica__in=user_units)
+
+        # Filter Steta records that are associated with these rentals
+        return Steta.objects.filter(detalji_iznajmljivanja__in=user_rentals)
+
