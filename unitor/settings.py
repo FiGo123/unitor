@@ -1,5 +1,7 @@
 from pathlib import Path
 from datetime import timedelta
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -78,6 +80,13 @@ DATABASES = {
 }
 
 
+#sentry
+sentry_sdk.init(
+    dsn="https://your_sentry_dsn@o123456.ingest.sentry.io/1234567",
+    integrations=[DjangoIntegration()],
+    traces_sample_rate=1.0,  # Adjust the sample rate (0.0 - 1.0) for performance monitoring
+    send_default_pii=True,  # Capture user info if using authentication
+)
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
