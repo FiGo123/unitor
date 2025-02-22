@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from rest_framework import viewsets
 
 from rest_framework.permissions import IsAuthenticated
@@ -12,6 +13,12 @@ class UposljenaJedinicaFilter(FilterSet):
     class Meta:
         model = UposljenaJedinica
         fields = ['iznajmljeno_od', 'iznajmljeno_do']
+
+
+def trigger_error():
+    division_by_zero = 1 / 0  # This will trigger an exception
+    return HttpResponse("Sentry trigger error")
+
 
 class UposljenaJedinicaViewSet(viewsets.ModelViewSet):
     serializer_class = UposljenaJedinicaSerializer
